@@ -4,6 +4,7 @@ Main Window
 
 from pathlib import Path
 from tkinter import filedialog
+import webbrowser
 import customtkinter as ctk
 import sys
 import ctypes
@@ -82,6 +83,7 @@ class MainWindow(ctk.CTk):
             self, text="Made by Up0k", font=("Monospace", 13, "bold"), text_color="#D0FE1D"
         )
         self.watermark_label.place(relx=1.0, rely=1.0, anchor="se", x=-10, y=-5)
+        self.watermark_label.bind("<button-1>", lambda event: webbrowser.open("https://github.com/Upok18"))
 
     def on_browse_click(self):
         folder_selected = filedialog.askdirectory()
