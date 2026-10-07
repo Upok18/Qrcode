@@ -1,6 +1,7 @@
 <div aligh="center">
 
 ## Qr Code 
-### you can generate qr code for free and its open source :wink:
 
 </div>
+
+### you can generate qr code for free and its open source :wink:
