@@ -80,10 +80,31 @@ class MainWindow(ctk.CTk):
         self.status_label.grid(row=5, column=0, padx=20, pady=5)
 
         self.watermark_label = ctk.CTkLabel(
-            self, text="Made by Up0k", font=("Monospace", 13, "bold"), text_color="#D0FE1D"
+            self, 
+            text="Made by Up0k", 
+            font=("Monospace", 13, "bold"), 
+            text_color="#afb805",
+            cursor="hand2"
         )
         self.watermark_label.place(relx=1.0, rely=1.0, anchor="se", x=-10, y=-5)
-        self.watermark_label.bind("<button-1>", lambda event: webbrowser.open("https://github.com/Upok18"))
+        self.watermark_label.bind("<Enter>", self.on_enter)
+        self.watermark_label.bind("<Leave>", self.on_leave)
+        self.watermark_label.bind(
+            "<Button-1>",
+            lambda event: webbrowser.open("https://github.com/Upok18")
+            )
+
+    def on_enter(self, event):
+        self.watermark_label.configure(
+            text_color="#6e66ff",
+            font=("Monospace", 13, "bold", "underline")
+            )
+
+    def on_leave(self, event):
+        self.watermark_label.configure(
+            text_color="#afb805",
+            font=("Monospace", 13, "bold"),
+        )
 
     def on_browse_click(self):
         folder_selected = filedialog.askdirectory()
