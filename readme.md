@@ -1,7 +1,4 @@
-<div aligh="center">
-
-## Qr Code 
-
+<div align="center">
+  <h2>QR Code</h2>
+  <h3>You can generate QR code for free and it's open source 😉</h3>
 </div>
-
-### you can generate qr code for free and its open source :wink:
