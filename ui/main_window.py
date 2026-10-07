@@ -38,11 +38,6 @@ class MainWindow(ctk.CTk):
         )
         self.title_label.grid(row=0, column=0, padx=20, pady=(20, 10))
 
-        # self.title_label = ctk.CTkLabel(
-        #     self, text="Made by Up0k", font=("Monospace", 8, "bold")
-        # )
-        # self.title_label.grid(row=0, column=0, padx=20, pady=1000)
-
         self.text_entry = ctk.CTkEntry(
             self, placeholder_text="Enter text or Url..."
         )
