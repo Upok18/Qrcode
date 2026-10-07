@@ -5,6 +5,8 @@ Main Window
 from pathlib import Path
 from tkinter import filedialog
 import customtkinter as ctk
+import sys
+import ctypes
 
 from functions.qr import generate_qr
 from ui.utils.window import center_window, resource_path
@@ -14,6 +16,10 @@ class MainWindow(ctk.CTk):
     def __init__(self):
 
         super().__init__()
+
+        if sys.platform.startswith("win"):
+            myappid = "up0k.qrcodegenerator.app.1.0"
+            ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 
         self.title("Up0k Qrcode")
         self.iconbitmap(resource_path("icon.ico"))
@@ -31,6 +37,11 @@ class MainWindow(ctk.CTk):
             self, text="QR Code Generator", font=("Consolas", 20, "bold")
         )
         self.title_label.grid(row=0, column=0, padx=20, pady=(20, 10))
+
+        # self.title_label = ctk.CTkLabel(
+        #     self, text="Made by Up0k", font=("Monospace", 8, "bold")
+        # )
+        # self.title_label.grid(row=0, column=0, padx=20, pady=1000)
 
         self.text_entry = ctk.CTkEntry(
             self, placeholder_text="Enter text or Url..."
@@ -71,6 +82,11 @@ class MainWindow(ctk.CTk):
         # Status Label (replacing terminal print())
         self.status_label = ctk.CTkLabel(self, text="", text_color="green")
         self.status_label.grid(row=5, column=0, padx=20, pady=5)
+
+        self.watermark_label = ctk.CTkLabel(
+            self, text="Made by Up0k", font=("Monospace", 13, "bold"), text_color="#D0FE1D"
+        )
+        self.watermark_label.place(relx=1.0, rely=1.0, anchor="se", x=-10, y=-5)
 
     def on_browse_click(self):
         folder_selected = filedialog.askdirectory()
