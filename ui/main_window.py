@@ -4,6 +4,7 @@ Main Window
 
 from pathlib import Path
 from tkinter import filedialog
+import threading
 import webbrowser
 import customtkinter as ctk
 import sys
@@ -11,6 +12,7 @@ import ctypes
 
 from functions.qr import generate_qr
 from ui.utils.window import center_window, resource_path
+from ui.utils.updater import check_for_updates
 
 class MainWindow(ctk.CTk):
 
@@ -29,6 +31,8 @@ class MainWindow(ctk.CTk):
         self.minsize(550, 400)
 
         self.create_layout()
+
+        threading.Thread(target=check_for_updates, daemon=True).start()
 
     def create_layout(self):
 
