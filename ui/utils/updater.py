@@ -4,8 +4,8 @@ import subprocess
 import requests
 from tkinter import messagebox
 
-CURRENT_VERSION = "1.0.0"
-VERSION_URL = ""
+CURRENT_VERSION = "1.0.2"
+VERSION_URL = "https://raw.githubusercontent.com/Upok18/Qrcode/refs/heads/main/ui/utils/version.json"
 
 def check_for_updates(parent_window=None):
     try:

@@ -1,5 +1,5 @@
 {
-    "version": "1.0.0",
+    "version": "1.0.2",
     "download_url": "https://github.com/Upok18/Qrcode/releases/download/v1.0.0/Qrcode.exe",
-    "changelog": "Bugs fixed"
+    "changelog": "Fixed some minor bugs"
 }
