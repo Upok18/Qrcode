@@ -25,7 +25,15 @@ def check_for_updates(parent_window=None):
         print(f"Failed to check for updates: {e}")
 
 def apply_update(download_url):
-    current_exe = sys.executable
+    # Detect if running as a compiled .exe or raw python script
+    is_frozen = getattr(sys, 'frozen', False)
+
+    if is_frozen:
+        current_exe = sys.executable
+    else:
+        # Fallback for dev mode when running 'py main.py'
+        current_exe = os.path.abspath("Qrcode.exe")
+
     new_exe = current_exe + ".new"
     bat_script = os.path.join(os.path.dirname(current_exe), "update.bat")
 
@@ -35,7 +43,7 @@ def apply_update(download_url):
         for chunk in res.iter_content(chunk_size=8192):
             f.write(chunk)
 
-    # 2. Write a batch file to wait for main app termination, replace file, and restart
+    # 2. Batch script to replace file and restart
     bat_content = f"""@echo off
 timeout /t 2 /nobreak > nul
 move /y "{new_exe}" "{current_exe}"
@@ -45,6 +53,6 @@ del "%~f0"
     with open(bat_script, "w") as f:
         f.write(bat_content)
 
-    # 3. Spawn batch script silently and quit main app
+    # 3. Spawn batch script silently and exit
     subprocess.Popen([bat_script], shell=True)
     sys.exit()
